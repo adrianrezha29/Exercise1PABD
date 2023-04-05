@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -129,6 +130,23 @@ namespace Exercise1
                 }
                 Console.WriteLine();
             }
+        }
+        public void insert(string NIM, string NmaMhs, string Almt, string jk, string notlpn, TglLahir, SqlConnection con)
+        {
+            string str = "";
+            str = "insert into HRD.Klinik (Id, NmPasien, Alamat, Sex, PhonePasien, birth)"
+                + "values(@id,@nma,@alamat,@JK,@Phn,@birth)";
+            SqlCommand cmd = new SqlCommand(str, con);
+            cmd.CommandType = CommandType.Text;
+
+            cmd.Parameters.Add(new SqlParameter("id", NIM));
+            cmd.Parameters.Add(new SqlParameter("nama", NmaMhs));
+            cmd.Parameters.Add(new SqlParameter("alamat", Almt));
+            cmd.Parameters.Add(new SqlParameter("jk", jk));
+            cmd.Parameters.Add(new SqlParameter("notlpn", notlpn));
+            cmd.Parameters.Add(new SqlParameter("tgllahir", birth));
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Data Berhasil Di Tambahkan");
         }
     }
 }
