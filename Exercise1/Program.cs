@@ -46,7 +46,50 @@ namespace Exercise1
                                         char ch = Convert.ToChar(Console.ReadLine());
                                         switch (ch)
                                         {
+                                            case '1':
+                                                {
+                                                    Console.Clear();
+                                                    Console.WriteLine("DATA MAHASISWA");
+                                                    pr.baca(conn);
+                                                    conn.Close();
+                                                }
+                                                break;
 
+                                            case '2':
+                                                {
+                                                    Console.Clear();
+                                                    Console.WriteLine("Masukkan NIM :");
+                                                    string NIM = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Nama Mahasiswa : ");
+                                                    string NamaMhs = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Alamat Mahasiswa : ");
+                                                    string Almt = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Jenis Kelamin (L/P) : ");
+                                                    string jk = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan No Telepon : ");
+                                                    string notlpn = Console.ReadLine();
+                                                    try
+                                                    {
+                                                        pr.insert(NIM, NamaMhs, Almt, jk, notlpn, conn);
+                                                        conn.Close();
+                                                    }
+                                                    catch
+                                                    {
+                                                        Console.WriteLine("\nAnda tidak memiliki " + "akses untuk menambah data");
+                                                    }
+
+                                                }
+                                                break;
+                                            case '3':
+                                                conn.Close();
+                                                return;
+                                            default:
+                                                {
+                                                    Console.Clear();
+                                                    Console.WriteLine("\nInvalid Option");
+                                                }
+                                                break;
+                                                ;
                                         }
                                     }
                                 }
