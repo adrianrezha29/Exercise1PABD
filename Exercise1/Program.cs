@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,7 @@ namespace Exercise1
                                             case '1':
                                                 {
                                                     Console.Clear();
-                                                    Console.WriteLine("DATA MAHASISWA");
+                                                    Console.WriteLine("Klinik Tongfang");
                                                     pr.baca(conn);
                                                     conn.Close();
                                                 }
@@ -58,19 +59,21 @@ namespace Exercise1
                                             case '2':
                                                 {
                                                     Console.Clear();
-                                                    Console.WriteLine("Masukkan NIM :");
-                                                    string NIM = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan Nama Mahasiswa : ");
-                                                    string NamaMhs = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan Alamat Mahasiswa : ");
+                                                    Console.WriteLine("Masukkan Id Pasien : ");
+                                                    string Id = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Nama Pasien : ");
+                                                    string NmPasien = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Alamat Pasien : ");
                                                     string Almt = Console.ReadLine();
                                                     Console.WriteLine("Masukkan Jenis Kelamin (L/P) : ");
                                                     string jk = Console.ReadLine();
                                                     Console.WriteLine("Masukkan No Telepon : ");
                                                     string notlpn = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Tanggal Lahir : ");
+                                                    string TglLahir = Console.ReadLine();
                                                     try
                                                     {
-                                                        pr.insert(NIM, NamaMhs, Almt, jk, notlpn, conn);
+                                                        pr.insert(Id, NmPasien, Almt, jk, notlpn, TglLahir, conn);
                                                         conn.Close();
                                                     }
                                                     catch
@@ -112,6 +115,19 @@ namespace Exercise1
                     Console.WriteLine("Tidak Dapat Mengakses Database Menggunakan User Tersebut\n");
                     Console.ResetColor();
                 }
+            }
+        }
+        public void baca(SqlConnection con)
+        {
+            SqlCommand cmd = new SqlCommand("Select * From HRD.Klinik", con);
+            SqlDataReader r = cmd.ExecuteReader();
+            while (r.Read())
+            {
+                for (int i = 0; i < r.FieldCount; i++)
+                {
+                    Console.WriteLine(r.GetValue(i));
+                }
+                Console.WriteLine();
             }
         }
     }
