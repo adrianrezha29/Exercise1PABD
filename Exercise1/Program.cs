@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +29,8 @@ namespace Exercise1
                         case 'K':
                             {
                                 SqlConnection conn = null;
-                                string strKoneksi = "Data source = REZHA\\REZHA; " +
-                                    "initial catalog = {0}; " + "User ID {sa}; password = {Jatiasih}";
+                                string strKoneksi = "Data source = REZHA\\(sa(67)); " +
+                                    "initial catalog = {0}; " + "User ID {1}; password = {2}";
                                 conn = new SqlConnection(string.Format(strKoneksi, db, user, pass));
                                 conn.Open();
                                 Console.Clear();
