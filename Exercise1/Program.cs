@@ -92,9 +92,25 @@ namespace Exercise1
                                                 ;
                                         }
                                     }
+                                    catch
+                                    {
+                                        Console.WriteLine("\nCheck for the value entered.");
+                                    }
                                 }
                             }
+                        default:
+                            {
+                                Console.WriteLine("\nInvalid Option");
+                            }
+                            break;
                     }
+                }
+                catch
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Tidak Dapat Mengakses Database Menggunakan User Tersebut\n");
+                    Console.ResetColor();
                 }
             }
         }
